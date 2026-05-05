@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/cs-shared.css" />
 <style>
-  :root { --accent: #111111; }
+  :root { --accent: #F26B5C; }
+  .accent-text { color: var(--accent); }
 
   /* Hero */
   .hero {
@@ -181,6 +182,7 @@
     font-style: italic;
     font-family: "Newsreader", Georgia, serif;
     font-weight: 300;
+    color: var(--accent);
   }
   .featured__grid {
     display: grid;
@@ -201,6 +203,15 @@
     position: relative;
   }
   .work-card__media .ph { position: absolute; inset: 0; }
+  .work-card__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
   .work-card__media .accent-bar {
     position: absolute;
     top: 14px; left: 14px;
@@ -360,10 +371,7 @@
 <body>
 
 <nav class="nav" id="nav">
-  <a class="nav__logo" href="index.html">
-    <span class="nav__dot"></span>
-    Trisha Fey
-  </a>
+  <a class="nav__logo" href="index.html"><img class="nav__logo-mark" src="assets/logo.svg" alt="Trisha Fey" /></a>
   <div class="nav__links">
     <a href="index.html" class="active">Home</a>
     <a href="work.html">Work</a>
@@ -391,7 +399,7 @@
       <div class="hero__intro fade-up d2">
         <h2 id="introEyebrow">Hello</h2>
         <p id="introBody">
-          I'm Trisha Fey. I strive to create innovative and empathic designs for the best possible user experience. I've always had a love for art and culture, coupled with a natural curiosity for human behaviour and its interaction with technology. This marriage of art, psychology, and technology developed into my current passion for UX design.
+          I'm Trisha Fey. I strive to create innovative and empathic designs for the best possible user experience. I've always had a love for art and culture, coupled with a natural curiosity for human behaviour and its interaction with technology. This marriage of <span class="accent-text">art, psychology, and technology</span> developed into my current passion for UX design.
         </p>
         <div class="hero__cta">
           <a class="btn" href="work.html">
@@ -430,7 +438,7 @@
 
 <section class="featured">
   <div class="featured__head">
-    <h2 class="featured__title reveal">Selected <em>work,</em><br/>2022 — present.</h2>
+    <h2 class="featured__title reveal">Featured <em>work.</em></h2>
     <a class="btn btn--ghost reveal" href="work.html">
       All projects
       <svg class="arrow" viewBox="0 0 16 16" fill="none">
@@ -441,13 +449,23 @@
 
   <div class="featured__grid">
     <a class="work-card reveal" href="case-nova.html" data-accent="nova">
-      <div class="work-card__media"><div class="ph"><span class="accent-bar">Nova AI</span><span class="ph__label">Hero · 16:9</span></div></div>
-      <div class="work-card__row"><div><div class="work-card__title">Nova AI</div><div class="work-card__sub">Rocket Mortgage · AI-powered closing</div></div><div class="work-card__year">2025</div></div>
+      <div class="work-card__media">
+        <span class="accent-bar">Nova AI</span>
+        <img class="work-card__img" src="assets/nova/hero.png" alt="Nova AI · Rocket Close workspace" loading="lazy" />
+      </div>
+      <div class="work-card__row">
+        <div>
+          <div class="work-card__title">Nova AI</div>
+          <div class="work-card__sub">Rocket Mortgage's, Rocket Close · AI-powered internal closing workspace</div>
+        </div>
+        <div class="work-card__year">2025 — 2026</div>
+      </div>
     </a>
   </div>
 </section>
 
-<section class="focus-strip" id="focusStrip">
+<!-- Hidden on the home page; preserved for re-use on a future /anthropic landing page. -->
+<section class="focus-strip" id="focusStrip" hidden>
   <div class="focus-strip__inner">
     <div class="focus-strip__eyebrow">
       <span>Why <span id="targetCompanyEyebrow">Anthropic</span></span>
