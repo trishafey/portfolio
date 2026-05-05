@@ -59,9 +59,10 @@
     width: 96px;
     height: 96px;
     min-width: 96px;
-    padding: 16px;
+    padding: 8px;
     border-radius: 12px;
   }
+  .cs-logos__track { gap: 40px; }
   .cs-logo img {
     height: 100%;
     width: 100%;
@@ -340,6 +341,14 @@
   .cs-break:has(> img.cs-img--contain[src$="break-nova-workspace.svg"]) {
     background: #232323;
   }
+
+  /* Design-tool screenshots sit on a neutral backdrop so the colorful UI reads cleanly */
+  .cs-break--screenshot {
+    background: var(--paper-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .cs-break--screenshot img.cs-img--contain { padding: 32px; }
 
   /* Mini case studies — image pane hidden for now (may add real media later) */
   .cs-mini__body { grid-template-columns: 1fr; }
@@ -864,8 +873,8 @@
 <!-- 9b. (Human–AI boundaries removed) -->
 
 <!-- 9c. IMPACT HIGHLIGHTS ====================================================== -->
-<div class="cs-break cs-break--tall">
-  <div class="ph"><span class="ph__label">Full-bleed image — design system</span></div>
+<div class="cs-break cs-break--tall cs-break--screenshot">
+  <img class="cs-img cs-img--contain" src="assets/nova/break-discovery-lucid.png" alt="Nova AI architecture diagram in Lucid" />
 </div>
 
 <!-- 10. DESIGN & RESEARCH ====================================================== -->
@@ -925,8 +934,8 @@
 </section>
 
 <!-- 11. RESEARCH IMAGE BREAK ====================================================== -->
-<div class="cs-break">
-  <div class="ph"><span class="ph__label">Research FigJam — workshop session</span></div>
+<div class="cs-break cs-break--screenshot">
+  <img class="cs-img cs-img--contain" src="assets/nova/break-figjam-discovery.png" alt="Nova AI assignment whiteboard FigJam research session" />
 </div>
 
 <!-- 12. KEY CHALLENGES ====================================================== -->
@@ -1007,8 +1016,8 @@
 </section>
 
 <!-- 13. IMAGE BREAK ====================================================== -->
-<div class="cs-break">
-  <div class="ph"><span class="ph__label">Full-bleed image — research</span></div>
+<div class="cs-break cs-break--screenshot">
+  <img class="cs-img cs-img--contain" src="assets/nova/break-research-userflow.png" alt="Nova AI scheduling and assignment user flow" />
 </div>
 
 <!-- 14. MVP / RESULTS ====================================================== -->
