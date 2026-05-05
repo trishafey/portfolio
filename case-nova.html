@@ -62,7 +62,15 @@
     padding: 8px;
     border-radius: 12px;
   }
-  .cs-logos__track { gap: 40px; }
+  .cs-logos__track {
+    gap: 40px;
+    animation-name: logoScrollNova;
+  }
+  /* Match the shared keyframes' offset (= gap / 2) so the duplicated track loops seamlessly */
+  @keyframes logoScrollNova {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-50% - 20px)); }
+  }
   .cs-logo img {
     height: 100%;
     width: 100%;
@@ -342,13 +350,22 @@
     background: #232323;
   }
 
-  /* Design-tool screenshots sit on a neutral backdrop so the colorful UI reads cleanly */
+  /* Design-tool screenshots: full-width, natural height, no backdrop */
   .cs-break--screenshot {
-    background: var(--paper-2);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    background: transparent;
+    border: none;
+    aspect-ratio: auto;
+    padding: 0;
   }
-  .cs-break--screenshot img.cs-img--contain { padding: 32px; }
+  .cs-break--screenshot > img {
+    position: static;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    display: block;
+    padding: 0;
+    object-fit: initial;
+  }
 
   /* Mini case studies — image pane hidden for now (may add real media later) */
   .cs-mini__body { grid-template-columns: 1fr; }
