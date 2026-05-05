@@ -62,10 +62,9 @@ button { font: inherit; cursor: pointer; }
   width: 32px;
   height: 32px;
   display: block;
-  color: var(--ink);
-  transition: color .15s;
+  transition: opacity .15s;
 }
-.nav__logo:hover .nav__logo-mark { color: var(--accent); }
+.nav__logo:hover .nav__logo-mark { opacity: 0.7; }
 .nav__links {
   display: flex;
   gap: 36px;
