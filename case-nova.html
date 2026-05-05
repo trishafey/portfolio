@@ -335,6 +335,15 @@
   @media (max-width: 800px) {
     .cs-boundaries { grid-template-columns: 1fr; }
   }
+
+  /* Full-bleed Nova workspace break — dark backdrop behind the contained SVG */
+  .cs-break:has(> img.cs-img--contain[src$="break-nova-workspace.svg"]) {
+    background: #232323;
+  }
+
+  /* Mini case studies — image pane hidden for now (may add real media later) */
+  .cs-mini__body { grid-template-columns: 1fr; }
+  .cs-mini__media { display: none; }
 </style>
 </head>
 <body class="cs" data-metric-style="underline">
@@ -503,7 +512,7 @@
   <div class="cs-minis__list">
 
     <!-- Mini 1 — Scheduling & assignment (now first, open by default) -->
-    <details class="cs-mini" id="mini-1" open>
+    <details class="cs-mini" id="mini-1">
       <summary class="cs-mini__summary">
         <span class="cs-mini__num">MC · 01</span>
         <span class="cs-mini__title">
