@@ -160,6 +160,15 @@
   }
   .card:hover .card__media { transform: translateY(-6px); }
   .card__media .ph { position: absolute; inset: 0; }
+  .card__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
   .card__brand {
     position: absolute;
     top: 18px; left: 18px;
@@ -327,7 +336,7 @@
 
   <a class="card" href="case-nova.html" data-accent="nova"
      data-tags="UX,AI,Web App,Enterprise,Product"
-     data-year="2025">
+     data-year="2026">
     <div class="card__media">
       <div class="ph">
         <span class="card__brand"><span class="card__brand-dot"></span>Nova AI</span>
@@ -337,9 +346,9 @@
     </div>
     <div class="card__row">
       <span class="card__title">Nova AI</span>
-      <span class="card__year">2025</span>
+      <span class="card__year">2025 — 2026</span>
     </div>
-    <p class="card__sub">An AI-assisted closing experience for Rocket Mortgage that turns long, anxious paperwork into a guided conversation.</p>
+    <p class="card__sub">An AI-assisted workspace for Rocket Close that combines automation and human judgment.</p>
     <div class="card__tags">
       <span class="tag" data-tag="UX">UX</span>
       <span class="tag" data-tag="AI">AI</span>
@@ -353,17 +362,15 @@
      data-tags="UX,Web App,Product"
      data-year="2024">
     <div class="card__media">
-      <div class="ph">
-        <span class="card__brand"><span class="card__brand-dot"></span>Clear Sign</span>
-        <span class="card__num">02 / 04</span>
-        <span class="ph__label">Project Hero · 4:3</span>
-      </div>
+      <img class="card__img" src="assets/clearsign-hero.png" alt="Clear Sign — Check-In complete screen" loading="lazy" />
+      <span class="card__brand"><span class="card__brand-dot"></span>Clear Sign</span>
+      <span class="card__num">02 / 04</span>
     </div>
     <div class="card__row">
       <span class="card__title">Clear Sign</span>
       <span class="card__year">2024</span>
     </div>
-    <p class="card__sub">A document signing flow that replaces six pages of legal anxiety with a calm, guided checklist.</p>
+    <p class="card__sub">A seamless remote closing experience that transforms complex, high-stakes workflows into intuitive, guided interactions.</p>
     <div class="card__tags">
       <span class="tag" data-tag="UX">UX</span>
       <span class="tag" data-tag="Web App">Web App</span>
@@ -375,11 +382,9 @@
      data-tags="UX,Enterprise,Dashboard,Web App"
      data-year="2023">
     <div class="card__media">
-      <div class="ph">
-        <span class="card__brand"><span class="card__brand-dot"></span>BGRS</span>
-        <span class="card__num">03 / 04</span>
-        <span class="ph__label">Project Hero · 4:3</span>
-      </div>
+      <img class="card__img" src="assets/bgrs-hero.png" alt="BGRS ReloAccess relocation dashboard" loading="lazy" />
+      <span class="card__brand"><span class="card__brand-dot"></span>BGRS</span>
+      <span class="card__num">03 / 04</span>
     </div>
     <div class="card__row">
       <span class="card__title">BGRS</span>
@@ -398,17 +403,15 @@
      data-tags="UX,Marketing,Web App,Product"
      data-year="2022">
     <div class="card__media">
-      <div class="ph">
-        <span class="card__brand"><span class="card__brand-dot"></span>PromoPages</span>
-        <span class="card__num">04 / 04</span>
-        <span class="ph__label">Project Hero · 4:3</span>
-      </div>
+      <img class="card__img" src="assets/promopages-hero.png" alt="PromoPages font selection wizard" loading="lazy" />
+      <span class="card__brand"><span class="card__brand-dot"></span>PromoPages</span>
+      <span class="card__num">04 / 04</span>
     </div>
     <div class="card__row">
       <span class="card__title">PromoPages</span>
       <span class="card__year">2022</span>
     </div>
-    <p class="card__sub">A drag-and-drop landing page builder for marketing teams who need to ship campaigns in hours, not sprints.</p>
+    <p class="card__sub">A lightweight, auto-provisioned landing page builder that helps small businesses promote themselves.</p>
     <div class="card__tags">
       <span class="tag" data-tag="UX">UX</span>
       <span class="tag" data-tag="Marketing">Marketing</span>
