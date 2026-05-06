@@ -305,6 +305,16 @@
     border-bottom: 1px solid var(--line);
   }
   .cs-prog-h__media .ph { position: absolute; inset: 0; }
+  .cs-prog-h__media > img,
+  .cs-prog-c__media > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
   .cs-prog-h__connector {
     display: none;
   }
@@ -916,7 +926,7 @@
     <div class="cs-progression__scroller" id="prog-scroller">
       <div class="cs-progression__strip">
         <article class="cs-prog-h">
-          <div class="cs-prog-h__media"><div class="ph"><span class="ph__label">CS 0.0 — 1.0 · Triage state</span></div></div>
+          <div class="cs-prog-h__media"><img src="assets/clearsign/progression-01-triage.png" alt="Clear Sign V 0.0 and V 1.0 — NexSys legacy and the early Amrock-branded welcome" loading="lazy" /></div>
           <div class="cs-prog-h__body">
             <div class="cs-prog-h__step">01</div>
             <div>
@@ -930,12 +940,12 @@
           </div>
         </article>
         <article class="cs-prog-h">
-          <div class="cs-prog-h__media"><div class="ph"><span class="ph__label">CS 1.5 · Refinement</span></div></div>
+          <div class="cs-prog-h__media"><img src="assets/clearsign/progression-02-refinement.png" alt="Clear Sign V 2.0 — Clear Sign branding with refined welcome and verify-identity modal" loading="lazy" /></div>
           <div class="cs-prog-h__body">
             <div class="cs-prog-h__step">02</div>
             <div>
               <div class="cs-prog-h__head">
-                <span class="cs-prog-h__version">CS 1.5</span>
+                <span class="cs-prog-h__version">CS 2.0</span>
                 <span class="cs-prog-h__year">Refinement</span>
               </div>
               <h3 class="cs-prog-h__title">Toward Rocket-grade UX.</h3>
@@ -944,12 +954,12 @@
           </div>
         </article>
         <article class="cs-prog-h">
-          <div class="cs-prog-h__media"><div class="ph"><span class="ph__label">CS 2.0 · Reimagined</span></div></div>
+          <div class="cs-prog-h__media"><img src="assets/clearsign/progression-03-reimagined.png" alt="Clear Sign V 3.0 — fully reimagined welcome, signing room, and check-in complete" loading="lazy" /></div>
           <div class="cs-prog-h__body">
             <div class="cs-prog-h__step">03</div>
             <div>
               <div class="cs-prog-h__head">
-                <span class="cs-prog-h__version">CS 2.0</span>
+                <span class="cs-prog-h__version">CS 3.0</span>
                 <span class="cs-prog-h__year">Reimagined</span>
               </div>
               <h3 class="cs-prog-h__title">A reimagined experience.</h3>
@@ -966,7 +976,7 @@
     <div class="cs-progression__viewport">
       <div class="cs-progression__track">
         <article class="cs-prog-c is-active" data-idx="0">
-          <div class="cs-prog-c__media"><div class="ph"><span class="ph__label">CS 0.0 — 1.0 · Triage state</span></div></div>
+          <div class="cs-prog-c__media"><img src="assets/clearsign/progression-01-triage.png" alt="Clear Sign V 0.0 and V 1.0 — NexSys legacy and the early Amrock-branded welcome" loading="lazy" /></div>
           <div class="cs-prog-c__copy">
             <span class="cs-prog-c__step">Step <strong>01</strong> of 03 · 2022</span>
             <span class="cs-prog-c__version">CS 0.0 — 1.0 · Triage</span>
@@ -975,19 +985,19 @@
           </div>
         </article>
         <article class="cs-prog-c" data-idx="1">
-          <div class="cs-prog-c__media"><div class="ph"><span class="ph__label">CS 1.5 · Refinement</span></div></div>
+          <div class="cs-prog-c__media"><img src="assets/clearsign/progression-02-refinement.png" alt="Clear Sign V 2.0 — Clear Sign branding with refined welcome and verify-identity modal" loading="lazy" /></div>
           <div class="cs-prog-c__copy">
             <span class="cs-prog-c__step">Step <strong>02</strong> of 03 · 2023</span>
-            <span class="cs-prog-c__version">CS 1.5 · Refinement</span>
+            <span class="cs-prog-c__version">CS 2.0 · Refinement</span>
             <h3 class="cs-prog-c__title">Toward <em>Rocket-grade</em> UX.</h3>
             <p>More significant UX and branding updates were implemented, making the app more user-friendly and bringing it closer to Rocket Mortgage's branding.</p>
           </div>
         </article>
         <article class="cs-prog-c" data-idx="2">
-          <div class="cs-prog-c__media"><div class="ph"><span class="ph__label">CS 2.0 · Reimagined</span></div></div>
+          <div class="cs-prog-c__media"><img src="assets/clearsign/progression-03-reimagined.png" alt="Clear Sign V 3.0 — fully reimagined welcome, signing room, and check-in complete" loading="lazy" /></div>
           <div class="cs-prog-c__copy">
             <span class="cs-prog-c__step">Step <strong>03</strong> of 03 · 2024</span>
-            <span class="cs-prog-c__version">CS 2.0 · Reimagined</span>
+            <span class="cs-prog-c__version">CS 3.0 · Reimagined</span>
             <h3 class="cs-prog-c__title">A <em>reimagined</em> experience.</h3>
             <p>A completely redesigned app with major improvements — a more intuitive interface, a streamlined check-in process, and a reimagined signing room enhanced with personalization and humanization.</p>
           </div>
@@ -1424,7 +1434,7 @@
     <div class="cs-detail">
       <h4>MVP scope</h4>
       <h3>Four moves that mattered most.</h3>
-      <p>Simplified check-in · mobile-first design · in-app chat · improved signing room. The MVP focused on the steps that drove the most support volume and the highest drop-off, leaving room for personalization and "what's next" guidance to follow in CS 2.0.</p>
+      <p>Simplified check-in · mobile-first design · in-app chat · improved signing room. The MVP focused on the steps that drove the most support volume and the highest drop-off, leaving room for personalization and "what's next" guidance to follow in CS 3.0.</p>
     </div>
     <div class="cs-detail">
       <h4>Rollout</h4>
