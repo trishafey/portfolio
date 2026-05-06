@@ -95,6 +95,8 @@
   }
   .ba-car[data-state="before"] .ba-car__tag::before { content: "Before"; }
   .ba-car:not([data-state="before"]) .ba-car__tag::before { content: "After"; }
+  /* Multi-mode tags are populated by JS — suppress the inherited After/Before pseudo */
+  .ba-car[data-mode="multi"] .ba-car__tag::before { content: none; }
 
   /* Toggle row below the frame */
   .ba-car__controls {
@@ -1065,13 +1067,13 @@
           <div class="ba-car__slide is-active" data-tag="After">
             <img src="assets/clearsign/feature-1-mobile-first-after-1.jpg" alt="Clear Sign 3.0 — mobile-first welcome flow on a borrower's device" loading="lazy" />
           </div>
-          <div class="ba-car__slide" data-tag="Before · 1">
+          <div class="ba-car__slide" data-tag="Before">
             <img src="assets/clearsign/feature-1-mobile-first-before-1.jpg" alt="Before — confirmation page extends off the mobile screen" loading="lazy" />
           </div>
-          <div class="ba-car__slide" data-tag="Before · 2">
+          <div class="ba-car__slide" data-tag="Before">
             <img src="assets/clearsign/feature-1-mobile-first-before-2.jpg" alt="Before — navigation menu submenu offscreen on mobile" loading="lazy" />
           </div>
-          <div class="ba-car__slide" data-tag="Before · 3">
+          <div class="ba-car__slide" data-tag="Before">
             <img src="assets/clearsign/feature-1-mobile-first-before-3.jpg" alt="Before — check-in screen with content overflow and confusing UI" loading="lazy" />
           </div>
         </div>
@@ -1113,19 +1115,46 @@
       </div>
     </div>
     <div class="cs-feature__media">
-      <div class="ba-car" data-state="after">
+      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="After">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide ba-car__slide--after"><div class="ph"><span class="ph__label">Concise content · After</span></div></div>
-          <div class="ba-car__slide ba-car__slide--before"><div class="ph"><span class="ph__label">Wall of legalese · Before</span></div></div>
+          <div class="ba-car__slide is-active" data-tag="After">
+            <img src="assets/clearsign/feature-2-clear-and-concise-after-1.png" alt="After — clear, concise signature creation flow" loading="lazy" />
+          </div>
+          <div class="ba-car__slide" data-tag="Before">
+            <img src="assets/clearsign/feature-2-clear-and-concise-before-1.png" alt="Before — signature selection across four separate steps" loading="lazy" />
+          </div>
+          <div class="ba-car__slide" data-tag="After">
+            <img src="assets/clearsign/feature-2-clear-and-concise-after-2.png" alt="After — security questions step in the new check-in" loading="lazy" />
+          </div>
+          <div class="ba-car__slide" data-tag="Before">
+            <div class="ph"><span class="ph__label">Before · pending upload</span></div>
+          </div>
+          <div class="ba-car__slide" data-tag="After">
+            <img src="assets/clearsign/feature-2-clear-and-concise-after-3.png" alt="After — combined Terms of Service consent in a single step" loading="lazy" />
+          </div>
+          <div class="ba-car__slide" data-tag="Before">
+            <img src="assets/clearsign/feature-2-clear-and-concise-before-3.png" alt="Before — Terms of Service and Privacy Policy split across two long screens" loading="lazy" />
+          </div>
         </div>
         <div class="ba-car__controls">
-          <button class="ba-car__toggle" type="button">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="label-after">See before</span>
-            <span class="label-before">See after</span>
-          </button>
-          <div class="ba-car__dots"><span></span><span></span></div>
+          <div class="ba-car__nav">
+            <button class="ba-car__prev" type="button" aria-label="Previous">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M10 13L5 8l5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="ba-car__next" type="button" aria-label="Next">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="ba-car__count"><strong class="ba-car__current">01</strong> / 06</div>
+          <div class="ba-car__dots">
+            <button class="is-active" data-go="0" aria-label="Slide 1"></button>
+            <button data-go="1" aria-label="Slide 2"></button>
+            <button data-go="2" aria-label="Slide 3"></button>
+            <button data-go="3" aria-label="Slide 4"></button>
+            <button data-go="4" aria-label="Slide 5"></button>
+            <button data-go="5" aria-label="Slide 6"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -1623,6 +1652,7 @@
   document.querySelectorAll('.ba-car[data-mode="multi"]').forEach((car) => {
     const slides = [...car.querySelectorAll('.ba-car__slide')];
     const dots = [...car.querySelectorAll('.ba-car__dots button')];
+    const tagEl = car.querySelector('.ba-car__tag');
     const currentEl = car.querySelector('.ba-car__current');
     const total = slides.length;
     const pad = (n) => String(n + 1).padStart(2, '0');
@@ -1631,7 +1661,9 @@
       idx = ((i % total) + total) % total;
       slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
       dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
-      if (slides[idx].dataset.tag) car.dataset.currentTag = slides[idx].dataset.tag;
+      const tag = slides[idx].dataset.tag || '';
+      if (tagEl) tagEl.textContent = tag;
+      if (tag) car.dataset.currentTag = tag;
       if (currentEl) currentEl.textContent = pad(idx);
       car.dataset.active = idx;
     };
