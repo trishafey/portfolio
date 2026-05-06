@@ -531,6 +531,15 @@
     object-fit: cover;
     display: block;
   }
+  /* Full-width break image fill */
+  .cs-break > .cs-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
   /* 12-up screen gallery (4 × 3) with click-to-expand */
   .cs-gallery--grid12 .cs-gallery__grid {
@@ -809,13 +818,27 @@
     <button class="cs-shot" type="button" data-src="assets/clearsign/screen-05.png" aria-label="Expand screen 05">
       <img src="assets/clearsign/screen-05.png" alt="Clear Sign — KBA security question" loading="lazy" />
     </button>
-    <div class="cs-shot cs-shot--placeholder" aria-hidden="true"><span>Screen 06</span></div>
-    <div class="cs-shot cs-shot--placeholder" aria-hidden="true"><span>Screen 07</span></div>
-    <div class="cs-shot cs-shot--placeholder" aria-hidden="true"><span>Screen 08</span></div>
-    <div class="cs-shot cs-shot--placeholder" aria-hidden="true"><span>Screen 09</span></div>
-    <div class="cs-shot cs-shot--placeholder" aria-hidden="true"><span>Screen 10</span></div>
-    <div class="cs-shot cs-shot--placeholder" aria-hidden="true"><span>Screen 11</span></div>
-    <div class="cs-shot cs-shot--placeholder" aria-hidden="true"><span>Screen 12</span></div>
+    <button class="cs-shot" type="button" data-src="assets/clearsign/screen-06.png" aria-label="Expand screen 06">
+      <img src="assets/clearsign/screen-06.png" alt="Clear Sign — screen 06" loading="lazy" />
+    </button>
+    <button class="cs-shot" type="button" data-src="assets/clearsign/screen-07.png" aria-label="Expand screen 07">
+      <img src="assets/clearsign/screen-07.png" alt="Clear Sign — screen 07" loading="lazy" />
+    </button>
+    <button class="cs-shot" type="button" data-src="assets/clearsign/screen-08.png" aria-label="Expand screen 08">
+      <img src="assets/clearsign/screen-08.png" alt="Clear Sign — screen 08" loading="lazy" />
+    </button>
+    <button class="cs-shot" type="button" data-src="assets/clearsign/screen-09.png" aria-label="Expand screen 09">
+      <img src="assets/clearsign/screen-09.png" alt="Clear Sign — screen 09" loading="lazy" />
+    </button>
+    <button class="cs-shot" type="button" data-src="assets/clearsign/screen-10.png" aria-label="Expand screen 10">
+      <img src="assets/clearsign/screen-10.png" alt="Clear Sign — screen 10" loading="lazy" />
+    </button>
+    <button class="cs-shot" type="button" data-src="assets/clearsign/screen-11.png" aria-label="Expand screen 11">
+      <img src="assets/clearsign/screen-11.png" alt="Clear Sign — screen 11" loading="lazy" />
+    </button>
+    <button class="cs-shot" type="button" data-src="assets/clearsign/screen-12.png" aria-label="Expand screen 12">
+      <img src="assets/clearsign/screen-12.png" alt="Clear Sign — screen 12" loading="lazy" />
+    </button>
   </div>
 </section>
 
@@ -869,7 +892,7 @@
 
 <!-- 7. FULL-WIDTH IMAGE BREAK -->
 <div class="cs-break">
-  <div class="ph"><span class="ph__label">Full-bleed image — Clear Sign 2.0 launch</span></div>
+  <img class="cs-img" src="assets/clearsign/break-launch.png" alt="Clear Sign 2.0 launch — borrower welcome screen" />
 </div>
 
 <!-- 8. PROGRESSION (custom for Clear Sign) — supports two modes -->
@@ -1269,7 +1292,7 @@
 
 <!-- 10. IMAGE BREAK -->
 <div class="cs-break cs-break--tall">
-  <div class="ph"><span class="ph__label">Full-bleed image — design system</span></div>
+  <img class="cs-img" src="assets/clearsign/break-design-system.jpg" alt="Clear Sign design system — full mobile flow on a single canvas" />
 </div>
 
 <!-- 11. DESIGN & RESEARCH -->
@@ -1326,7 +1349,7 @@
 
 <!-- 12. RESEARCH IMAGE BREAK -->
 <div class="cs-break">
-  <div class="ph"><span class="ph__label">Research synthesis — pain point map</span></div>
+  <img class="cs-img" src="assets/clearsign/break-research-synthesis.jpg" alt="Clear Sign research synthesis — Figma board mapping ID verification pain points" />
 </div>
 
 <!-- 13. KEY CHALLENGES -->
@@ -1384,7 +1407,7 @@
 
 <!-- 14. IMAGE BREAK -->
 <div class="cs-break">
-  <div class="ph"><span class="ph__label">Full-bleed image — closing day</span></div>
+  <img class="cs-img" src="assets/clearsign/break-closing-day.jpg" alt="Closing day — paper wireframes and a phone on a designer's desk" />
 </div>
 
 <!-- 15. RESULTS & IMPACT -->
@@ -1432,7 +1455,7 @@
 
 <!-- 16. IMAGE BREAK -->
 <div class="cs-break">
-  <div class="ph"><span class="ph__label">Full-bleed image — Clear Sign in use</span></div>
+  <img class="cs-img" src="assets/clearsign/break-in-use.jpg" alt="Clear Sign in use — sketching the welcome screen layout" />
 </div>
 
 <!-- 17. LEARNINGS & NEXT STEPS -->
