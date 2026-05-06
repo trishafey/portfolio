@@ -521,6 +521,42 @@
     .cs-progression__viewport,
     .cs-progression__track { min-height: 0; }
   }
+
+  /* Hero image fill */
+  .cs-hero__media .cs-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Logo marquee — match Nova AI: square logo tiles, 40px gap, seamless loop */
+  .cs-logos .cs-logo {
+    width: 96px;
+    height: 96px;
+    min-width: 96px;
+    padding: 8px;
+    border-radius: 12px;
+  }
+  .cs-logo img {
+    height: 100%;
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity .25s ease;
+  }
+  .cs-logo:hover img { opacity: 1; }
+  .cs-logos__track {
+    gap: 40px;
+    animation-name: logoScrollNova;
+  }
+  @keyframes logoScrollNova {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-50% - 20px)); }
+  }
 </style>
 </head>
 <body class="cs" data-metric-style="underline">
@@ -549,7 +585,7 @@
     A seamless remote closing experience that transforms complex, high-stakes workflows into intuitive, guided interactions for borrowers and notaries.
   </p>
   <div class="cs-hero__media">
-    <div class="ph"><span class="ph__label">Hero · 16:9</span></div>
+    <img class="cs-img" src="assets/clearsign/hero.png" alt="Clear Sign — borrower welcome screen alongside mobile signing room" />
   </div>
 </header>
 
@@ -588,22 +624,25 @@
   <div class="cs-logos__label">Rocket Companies ecosystem</div>
   <div class="cs-logos__track-wrap">
     <div class="cs-logos__track">
-      <div class="cs-logo"><strong>Rocket</strong></div>
-      <div class="cs-logo"><strong>Rocket Mortgage</strong></div>
-      <div class="cs-logo"><strong>Rocket Close</strong></div>
-      <div class="cs-logo"><strong>Rocket Homes</strong></div>
-      <div class="cs-logo"><strong>Rocket Card</strong></div>
-      <div class="cs-logo"><strong>Rocket Money</strong></div>
-      <div class="cs-logo"><strong>Rocket Pro</strong></div>
-      <div class="cs-logo"><strong>Redfin</strong></div>
-      <div class="cs-logo"><strong>Rocket</strong></div>
-      <div class="cs-logo"><strong>Rocket Mortgage</strong></div>
-      <div class="cs-logo"><strong>Rocket Close</strong></div>
-      <div class="cs-logo"><strong>Rocket Homes</strong></div>
-      <div class="cs-logo"><strong>Rocket Card</strong></div>
-      <div class="cs-logo"><strong>Rocket Money</strong></div>
-      <div class="cs-logo"><strong>Rocket Pro</strong></div>
-      <div class="cs-logo"><strong>Redfin</strong></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket.jpg" alt="Rocket" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-mortgage.jpg" alt="Rocket Mortgage" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-close.jpg" alt="Rocket Close" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-homes.jpg" alt="Rocket Homes" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-money.jpg" alt="Rocket Money" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-pro.jpg" alt="Rocket Pro" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-loans.jpg" alt="Rocket Loans" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-redfin.jpg" alt="Redfin powered by Rocket" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-companies.jpg" alt="Rocket Companies" /></div>
+      <!-- duplicated for marquee -->
+      <div class="cs-logo"><img src="assets/nova/logos/rocket.jpg" alt="" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-mortgage.jpg" alt="" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-close.jpg" alt="" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-homes.jpg" alt="" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-money.jpg" alt="" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-pro.jpg" alt="" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-loans.jpg" alt="" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-redfin.jpg" alt="" /></div>
+      <div class="cs-logo"><img src="assets/nova/logos/rocket-companies.jpg" alt="" /></div>
     </div>
   </div>
 </section>
