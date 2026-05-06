@@ -39,6 +39,25 @@
     object-fit: cover;
     display: block;
   }
+  /* Full-width break image fill */
+  .cs-break > .cs-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Multi-slide carousel image fill */
+  .ba-car__slide > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
 </style>
 </head>
 <body class="cs" data-metric-style="underline">
@@ -126,7 +145,7 @@
   </div>
 </section>
 
-<div class="cs-break"><div class="ph"><span class="ph__label">Full-bleed image — guided webform</span></div></div>
+<div class="cs-break"><img class="cs-img" src="assets/promopages/break-1-login.png" alt="PromoPages — partner sign-in / login experience" /></div>
 
 <section class="cs-features">
   <header class="cs-features__head">
@@ -151,13 +170,14 @@
       </div>
     </div>
     <div class="cs-feature__media">
-      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Brand">
+      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Step 01">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide is-active" data-tag="Brand"><div class="ph"><span class="ph__label">Logo &amp; colors · 01</span></div></div>
-          <div class="ba-car__slide" data-tag="Type"><div class="ph"><span class="ph__label">Font selection · 02</span></div></div>
-          <div class="ba-car__slide" data-tag="Imagery"><div class="ph"><span class="ph__label">Image upload · 03</span></div></div>
-          <div class="ba-car__slide" data-tag="Preview"><div class="ph"><span class="ph__label">Live preview · 04</span></div></div>
+          <div class="ba-car__slide is-active" data-tag="Step 01"><img src="assets/promopages/feature-1-customize-1.png" alt="Customize step 1" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Step 02"><img src="assets/promopages/feature-1-customize-2.png" alt="Customize step 2" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Step 03"><img src="assets/promopages/feature-1-customize-3.png" alt="Customize step 3" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Step 04"><img src="assets/promopages/feature-1-customize-4.png" alt="Customize step 4" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Step 05"><img src="assets/promopages/feature-1-customize-5.png" alt="Customize step 5" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <div class="ba-car__nav">
@@ -168,12 +188,13 @@
               <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
-          <div class="ba-car__count"><strong class="ba-car__current">01</strong> / 04</div>
+          <div class="ba-car__count"><strong class="ba-car__current">01</strong> / 05</div>
           <div class="ba-car__dots">
             <button class="is-active" data-go="0" aria-label="Slide 1"></button>
             <button data-go="1" aria-label="Slide 2"></button>
             <button data-go="2" aria-label="Slide 3"></button>
             <button data-go="3" aria-label="Slide 4"></button>
+            <button data-go="4" aria-label="Slide 5"></button>
           </div>
         </div>
       </div>
@@ -200,11 +221,11 @@
       <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Discount">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide is-active" data-tag="Discount"><div class="ph"><span class="ph__label">Promote a discount · 01</span></div></div>
-          <div class="ba-car__slide" data-tag="Menu / PDF"><div class="ph"><span class="ph__label">Share a menu / PDF · 02</span></div></div>
-          <div class="ba-car__slide" data-tag="Email list"><div class="ph"><span class="ph__label">Build an email list · 03</span></div></div>
-          <div class="ba-car__slide" data-tag="News"><div class="ph"><span class="ph__label">Share news · 04</span></div></div>
-          <div class="ba-car__slide" data-tag="Landing"><div class="ph"><span class="ph__label">General landing page · 05</span></div></div>
+          <div class="ba-car__slide is-active" data-tag="Discount"><img src="assets/promopages/feature-2-personalize-1.png" alt="Personalize — promote a discount" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Menu / PDF"><img src="assets/promopages/feature-2-personalize-2.png" alt="Personalize — share a menu / PDF" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Email list"><img src="assets/promopages/feature-2-personalize-3.png" alt="Personalize — build an email list" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="News"><img src="assets/promopages/feature-2-personalize-4.png" alt="Personalize — share news" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Landing"><img src="assets/promopages/feature-2-personalize-5.png" alt="Personalize — general landing page" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <div class="ba-car__nav">
@@ -245,12 +266,11 @@
       </div>
     </div>
     <div class="cs-feature__media">
-      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Auto-provisioned">
+      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Step 01">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide is-active" data-tag="Auto-provisioned"><div class="ph"><span class="ph__label">Auto-provisioned PromoPage · 01</span></div></div>
-          <div class="ba-car__slide" data-tag="Dashboard"><div class="ph"><span class="ph__label">Partner dashboard · 02</span></div></div>
-          <div class="ba-car__slide" data-tag="Upsell prompt"><div class="ph"><span class="ph__label">Upgrade to full website · 03</span></div></div>
+          <div class="ba-car__slide is-active" data-tag="Step 01"><img src="assets/promopages/feature-3-upsell-1.png" alt="Upsell step 1" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Step 02"><img src="assets/promopages/feature-3-upsell-2.png" alt="Upsell step 2" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <div class="ba-car__nav">
@@ -261,11 +281,10 @@
               <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
-          <div class="ba-car__count"><strong class="ba-car__current">01</strong> / 03</div>
+          <div class="ba-car__count"><strong class="ba-car__current">01</strong> / 02</div>
           <div class="ba-car__dots">
             <button class="is-active" data-go="0" aria-label="Slide 1"></button>
             <button data-go="1" aria-label="Slide 2"></button>
-            <button data-go="2" aria-label="Slide 3"></button>
           </div>
         </div>
       </div>
@@ -346,7 +365,7 @@
   </div>
 </section>
 
-<div class="cs-break"><div class="ph"><span class="ph__label">Full-bleed image break</span></div></div>
+<div class="cs-break"><img class="cs-img" src="assets/promopages/break-3-customizedpage.png" alt="PromoPages — finished customized landing page" /></div>
 
 <section class="cs-section">
   <header class="cs-section__head">
