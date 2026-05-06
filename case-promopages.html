@@ -58,6 +58,8 @@
     object-position: top center;
     display: block;
   }
+  /* Multi-mode tags are populated by JS — suppress the inherited After/Before pseudo */
+  .ba-car[data-mode="multi"] .ba-car__tag::before { content: none; }
 </style>
 </head>
 <body class="cs" data-metric-style="underline">
@@ -170,14 +172,14 @@
       </div>
     </div>
     <div class="cs-feature__media">
-      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Step 01">
+      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Type">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide is-active" data-tag="Step 01"><img src="assets/promopages/feature-1-customize-1.png" alt="Customize step 1" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="Step 02"><img src="assets/promopages/feature-1-customize-2.png" alt="Customize step 2" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="Step 03"><img src="assets/promopages/feature-1-customize-3.png" alt="Customize step 3" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="Step 04"><img src="assets/promopages/feature-1-customize-4.png" alt="Customize step 4" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="Step 05"><img src="assets/promopages/feature-1-customize-5.png" alt="Customize step 5" loading="lazy" /></div>
+          <div class="ba-car__slide is-active" data-tag="Type"><img src="assets/promopages/feature-1-customize-1.png" alt="Customize — type" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Color"><img src="assets/promopages/feature-1-customize-2.png" alt="Customize — color" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Font"><img src="assets/promopages/feature-1-customize-3.png" alt="Customize — font" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Branding"><img src="assets/promopages/feature-1-customize-4.png" alt="Customize — branding" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Contact Info"><img src="assets/promopages/feature-1-customize-5.png" alt="Customize — contact info" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <div class="ba-car__nav">
@@ -218,14 +220,14 @@
       </div>
     </div>
     <div class="cs-feature__media">
-      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Discount">
+      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Create a landing page">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide is-active" data-tag="Discount"><img src="assets/promopages/feature-2-personalize-1.png" alt="Personalize — promote a discount" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="Menu / PDF"><img src="assets/promopages/feature-2-personalize-2.png" alt="Personalize — share a menu / PDF" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="Email list"><img src="assets/promopages/feature-2-personalize-3.png" alt="Personalize — build an email list" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="News"><img src="assets/promopages/feature-2-personalize-4.png" alt="Personalize — share news" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="Landing"><img src="assets/promopages/feature-2-personalize-5.png" alt="Personalize — general landing page" loading="lazy" /></div>
+          <div class="ba-car__slide is-active" data-tag="Create a landing page"><img src="assets/promopages/feature-2-personalize-1.png" alt="Personalize — create a landing page" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Share a PDF document (menu)"><img src="assets/promopages/feature-2-personalize-2.png" alt="Personalize — share a PDF document (menu)" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Promote a discount"><img src="assets/promopages/feature-2-personalize-3.png" alt="Personalize — promote a discount" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Build your email list"><img src="assets/promopages/feature-2-personalize-4.png" alt="Personalize — build your email list" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Share news"><img src="assets/promopages/feature-2-personalize-5.png" alt="Personalize — share news" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <div class="ba-car__nav">
@@ -266,11 +268,10 @@
       </div>
     </div>
     <div class="cs-feature__media">
-      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Step 01">
+      <div class="ba-car" data-mode="multi" data-active="0">
         <div class="ba-car__frame">
-          <span class="ba-car__tag"></span>
-          <div class="ba-car__slide is-active" data-tag="Step 01"><img src="assets/promopages/feature-3-upsell-1.png" alt="Upsell step 1" loading="lazy" /></div>
-          <div class="ba-car__slide" data-tag="Step 02"><img src="assets/promopages/feature-3-upsell-2.png" alt="Upsell step 2" loading="lazy" /></div>
+          <div class="ba-car__slide is-active"><img src="assets/promopages/feature-3-upsell-1.png" alt="Upsell step 1" loading="lazy" /></div>
+          <div class="ba-car__slide"><img src="assets/promopages/feature-3-upsell-2.png" alt="Upsell step 2" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <div class="ba-car__nav">
@@ -446,7 +447,9 @@
       idx = ((i % total) + total) % total;
       slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
       dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
-      if (slides[idx].dataset.tag) car.dataset.currentTag = slides[idx].dataset.tag;
+      const tag = slides[idx].dataset.tag || '';
+      if (tagEl) tagEl.textContent = tag;
+      if (tag) car.dataset.currentTag = tag;
       if (currentEl) currentEl.textContent = pad(idx);
       car.dataset.active = idx;
     };
