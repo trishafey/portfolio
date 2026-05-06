@@ -21,6 +21,15 @@
     background: var(--paper-2);
   }
   .cs-feature__media .single .ph { position: absolute; inset: 0; }
+  .cs-feature__media .single > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
 
   /* Mobile-frame variant for media */
   .cs-feature__media .phone {
@@ -1258,8 +1267,12 @@
       <div class="ba-car" data-state="after">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide ba-car__slide--after"><div class="ph"><span class="ph__label">Two-checkbox agreement · After</span></div></div>
-          <div class="ba-car__slide ba-car__slide--before"><div class="ph"><span class="ph__label">Single dense agreement · Before</span></div></div>
+          <div class="ba-car__slide ba-car__slide--after">
+            <img src="assets/clearsign/feature-5-TSPolicy-after-1.jpg" alt="After — combined Terms of Service consent in a single step with two checkboxes" loading="lazy" />
+          </div>
+          <div class="ba-car__slide ba-car__slide--before">
+            <img src="assets/clearsign/feature-5-TSPolicy-before-1.jpg" alt="Before — Terms of Service and Privacy Policy split across two long screens" loading="lazy" />
+          </div>
         </div>
         <div class="ba-car__controls">
           <button class="ba-car__toggle" type="button">
@@ -1290,7 +1303,7 @@
       </div>
     </div>
     <div class="cs-feature__media">
-      <div class="single"><div class="ph"><span class="ph__label">In-session chat</span></div></div>
+      <div class="single"><img class="cs-img" src="assets/clearsign/feature-6-chat.jpg" alt="In-app chat — Group Chat and Support Chat side by side during a signing" loading="lazy" /></div>
     </div>
   </article>
 
@@ -1314,8 +1327,12 @@
       <div class="ba-car" data-state="after">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide ba-car__slide--after"><div class="ph"><span class="ph__label">Signing room — dark · After</span></div></div>
-          <div class="ba-car__slide ba-car__slide--before"><div class="ph"><span class="ph__label">Bright glare-heavy · Before</span></div></div>
+          <div class="ba-car__slide ba-car__slide--after">
+            <img src="assets/clearsign/feature-7-signing-room-after.jpg" alt="After — redesigned signing room with AI assistant participant and clear document view" loading="lazy" />
+          </div>
+          <div class="ba-car__slide ba-car__slide--before">
+            <img src="assets/clearsign/feature-7-signing-room-before.jpg" alt="Before — older signing room with oversized participant videos and crowded action items" loading="lazy" />
+          </div>
         </div>
         <div class="ba-car__controls">
           <button class="ba-car__toggle" type="button">
