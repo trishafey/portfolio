@@ -64,6 +64,15 @@
     transition: opacity .45s ease, transform .55s cubic-bezier(.2,.7,.2,1);
   }
   .ba-car__slide .ph { position: absolute; inset: 0; }
+  .ba-car__slide > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
   .ba-car__slide--before { opacity: 0; transform: translateX(-6%); pointer-events: none; }
   .ba-car__slide--after  { opacity: 1; transform: translateX(0); }
   .ba-car[data-state="before"] .ba-car__slide--before { opacity: 1; transform: translateX(0); pointer-events: auto; }
@@ -1050,19 +1059,38 @@
       </div>
     </div>
     <div class="cs-feature__media">
-      <div class="ba-car" data-state="after">
-        <div class="ba-car__frame ba-car__frame--phone">
+      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="After">
+        <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide ba-car__slide--after"><div class="ph"><span class="ph__label">Mobile check-in · After</span></div></div>
-          <div class="ba-car__slide ba-car__slide--before"><div class="ph"><span class="ph__label">Desktop-only · Before</span></div></div>
+          <div class="ba-car__slide is-active" data-tag="After">
+            <img src="assets/clearsign/feature-1-mobile-first-after-1.jpg" alt="Clear Sign 3.0 — mobile-first welcome flow on a borrower's device" loading="lazy" />
+          </div>
+          <div class="ba-car__slide" data-tag="Before · 1">
+            <img src="assets/clearsign/feature-1-mobile-first-before-1.jpg" alt="Before — confirmation page extends off the mobile screen" loading="lazy" />
+          </div>
+          <div class="ba-car__slide" data-tag="Before · 2">
+            <img src="assets/clearsign/feature-1-mobile-first-before-2.jpg" alt="Before — navigation menu submenu offscreen on mobile" loading="lazy" />
+          </div>
+          <div class="ba-car__slide" data-tag="Before · 3">
+            <img src="assets/clearsign/feature-1-mobile-first-before-3.jpg" alt="Before — check-in screen with content overflow and confusing UI" loading="lazy" />
+          </div>
         </div>
         <div class="ba-car__controls">
-          <button class="ba-car__toggle" type="button">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="label-after">See before</span>
-            <span class="label-before">See after</span>
-          </button>
-          <div class="ba-car__dots"><span></span><span></span></div>
+          <div class="ba-car__nav">
+            <button class="ba-car__prev" type="button" aria-label="Previous">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M10 13L5 8l5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="ba-car__next" type="button" aria-label="Next">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="ba-car__count"><strong class="ba-car__current">01</strong> / 04</div>
+          <div class="ba-car__dots">
+            <button class="is-active" data-go="0" aria-label="Slide 1"></button>
+            <button data-go="1" aria-label="Slide 2"></button>
+            <button data-go="2" aria-label="Slide 3"></button>
+            <button data-go="3" aria-label="Slide 4"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -1589,6 +1617,28 @@
       const showingBefore = car.getAttribute('data-state') === 'before';
       car.setAttribute('data-state', showingBefore ? 'after' : 'before');
     });
+  });
+
+  /* ===== Multi-slide feature carousels (prev / next / dots) ===== */
+  document.querySelectorAll('.ba-car[data-mode="multi"]').forEach((car) => {
+    const slides = [...car.querySelectorAll('.ba-car__slide')];
+    const dots = [...car.querySelectorAll('.ba-car__dots button')];
+    const currentEl = car.querySelector('.ba-car__current');
+    const total = slides.length;
+    const pad = (n) => String(n + 1).padStart(2, '0');
+    let idx = 0;
+    const go = (i) => {
+      idx = ((i % total) + total) % total;
+      slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+      dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
+      if (slides[idx].dataset.tag) car.dataset.currentTag = slides[idx].dataset.tag;
+      if (currentEl) currentEl.textContent = pad(idx);
+      car.dataset.active = idx;
+    };
+    car.querySelector('.ba-car__prev')?.addEventListener('click', () => go(idx - 1));
+    car.querySelector('.ba-car__next')?.addEventListener('click', () => go(idx + 1));
+    dots.forEach((d) => d.addEventListener('click', () => go(+d.dataset.go)));
+    go(0);
   });
 
   /* ===== Screen gallery lightbox ===== */
