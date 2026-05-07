@@ -359,6 +359,16 @@
     .cs-a11y__grid { grid-template-columns: 1fr; gap: 32px; }
     .cs-proto__meta { grid-template-columns: 1fr; gap: 18px; }
   }
+
+  /* Hero image fill */
+  .cs-hero__media .cs-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 </style>
 </head>
 <body class="cs" data-metric-style="underline">
@@ -376,7 +386,7 @@
   <div class="cs-hero__crumbs"><a href="work.html">Work</a><span>/</span><span>BGRS</span></div>
   <h1 class="cs-hero__title">Relocation,<br/><em>without the chaos.</em></h1>
   <p class="cs-hero__sub">A centralized, task-driven dashboard that transforms a fragmented, email-heavy relocation process into a structured, trackable, and collaborative experience — designed inclusively to WCAG AA in partnership with Fable.</p>
-  <div class="cs-hero__media"><div class="ph"><span class="ph__label">Hero · BGRS dashboard 16:9</span></div></div>
+  <div class="cs-hero__media"><img class="cs-img" src="assets/bgrs/hero.jpg" alt="BGRS ReloAccess — relocation dashboard with departure milestone, tasks, and itinerary" /></div>
 </header>
 
 <section class="cs-info">
