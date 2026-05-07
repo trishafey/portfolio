@@ -378,6 +378,19 @@
     object-fit: cover;
     display: block;
   }
+  /* Carousel slide image fill (before/after + multi) */
+  .ba-car__slide > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  /* Multi-mode tags are written to .ba-car__tag textContent — suppress the
+     inherited After/Before pseudo */
+  .ba-car[data-mode="multi"] .ba-car__tag::before { content: none; }
 
   /* 12-up screen gallery (4 × 3) with click-to-expand */
   .cs-gallery--grid12 .cs-gallery__grid {
@@ -728,8 +741,8 @@
       <div class="ba-car" data-state="after">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide ba-car__slide--after"><div class="ph"><span class="ph__label">Top + side hybrid nav · After</span></div></div>
-          <div class="ba-car__slide ba-car__slide--before"><div class="ph"><span class="ph__label">Flat nav, hidden depth · Before</span></div></div>
+          <div class="ba-car__slide ba-car__slide--after"><img src="assets/bgrs/feature-1-navigation-system-design-after.png" alt="After — top + side hybrid navigation" loading="lazy" /></div>
+          <div class="ba-car__slide ba-car__slide--before"><img src="assets/bgrs/feature-1-navigation-system-design-before.png" alt="Before — flat navigation with hidden depth" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <button class="ba-car__toggle" type="button">
@@ -763,8 +776,8 @@
       <div class="ba-car" data-state="after">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide ba-car__slide--after"><div class="ph"><span class="ph__label">Tasks · milestones · itinerary · After</span></div></div>
-          <div class="ba-car__slide ba-car__slide--before"><div class="ph"><span class="ph__label">Widget overload · Before</span></div></div>
+          <div class="ba-car__slide ba-car__slide--after"><img src="assets/bgrs/feature-2-home-dashboard-redesign-after.png" alt="After — redesigned home dashboard with tasks, milestones, and itinerary" loading="lazy" /></div>
+          <div class="ba-car__slide ba-car__slide--before"><img src="assets/bgrs/feature-2-home-dashboard-redesign-before.png" alt="Before — original home dashboard with widget overload" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <button class="ba-car__toggle" type="button">
@@ -796,13 +809,12 @@
       <span class="a11y-pill"><strong>A11y</strong> · calendar tested for screen reader &amp; keyboard nav</span>
     </div>
     <div class="cs-feature__media">
-      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Calendar">
+      <div class="ba-car" data-mode="multi" data-active="0" data-current-tag="Calendar View">
         <div class="ba-car__frame">
           <span class="ba-car__tag"></span>
-          <div class="ba-car__slide is-active" data-tag="Calendar"><div class="ph"><span class="ph__label">Calendar overview · 01</span></div></div>
-          <div class="ba-car__slide" data-tag="List view"><div class="ph"><span class="ph__label">Unified to-do list · 02</span></div></div>
-          <div class="ba-car__slide" data-tag="Task detail"><div class="ph"><span class="ph__label">Task detail + comments · 03</span></div></div>
-          <div class="ba-car__slide" data-tag="In-app comment"><div class="ph"><span class="ph__label">In-app comment thread · 04</span></div></div>
+          <div class="ba-car__slide is-active" data-tag="Calendar View"><img src="assets/bgrs/feature-3-calander-1.png" alt="Calendar view — relocation timeline overview" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Task View"><img src="assets/bgrs/feature-3-tasks-2.png" alt="Task view — unified to-do list" loading="lazy" /></div>
+          <div class="ba-car__slide" data-tag="Task Details"><img src="assets/bgrs/feature-3-tasks-panel-3.png" alt="Task details panel — task detail with comments" loading="lazy" /></div>
         </div>
         <div class="ba-car__controls">
           <div class="ba-car__nav">
@@ -813,12 +825,11 @@
               <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
-          <div class="ba-car__count"><strong class="ba-car__current">01</strong> / 04</div>
+          <div class="ba-car__count"><strong class="ba-car__current">01</strong> / 03</div>
           <div class="ba-car__dots">
             <button class="is-active" data-go="0" aria-label="Slide 1"></button>
             <button data-go="1" aria-label="Slide 2"></button>
             <button data-go="2" aria-label="Slide 3"></button>
-            <button data-go="3" aria-label="Slide 4"></button>
           </div>
         </div>
       </div>
@@ -1054,8 +1065,18 @@
     e.currentTarget.setAttribute('disabled', 'true');
   });
 
-  // Carousel — F·03 calendar/list/task/comment slides
+  // Before / after toggle — F·01 navigation, F·02 home dashboard
   document.querySelectorAll('.ba-car').forEach((car) => {
+    const btn = car.querySelector('.ba-car__toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const showingBefore = car.getAttribute('data-state') === 'before';
+      car.setAttribute('data-state', showingBefore ? 'after' : 'before');
+    });
+  });
+
+  // Multi-slide carousel — F·03 calendar / task / task details
+  document.querySelectorAll('.ba-car[data-mode="multi"]').forEach((car) => {
     const slides = [...car.querySelectorAll('.ba-car__slide')];
     const dots = [...car.querySelectorAll('.ba-car__dots button')];
     const tagEl = car.querySelector('.ba-car__tag');
@@ -1067,7 +1088,9 @@
       idx = ((i % total) + total) % total;
       slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
       dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
-      if (tagEl) tagEl.textContent = slides[idx].dataset.tag || '';
+      const tag = slides[idx].dataset.tag || '';
+      if (tagEl) tagEl.textContent = tag;
+      if (tag) car.dataset.currentTag = tag;
       if (currentEl) currentEl.textContent = pad(idx);
       car.dataset.active = idx;
     };
