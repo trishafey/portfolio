@@ -369,6 +369,178 @@
     object-fit: cover;
     display: block;
   }
+  /* Full-bleed break images fill */
+  .cs-break > .cs-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 12-up screen gallery (4 × 3) with click-to-expand */
+  .cs-gallery--grid12 .cs-gallery__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .cs-shot {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 0;
+    margin: 0;
+    cursor: zoom-in;
+    display: block;
+    transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s;
+  }
+  .cs-shot:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.25);
+  }
+  .cs-shot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .cs-shot img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  @media (max-width: 1000px) {
+    .cs-gallery--grid12 .cs-gallery__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .cs-gallery--grid12 .cs-gallery__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Wireframes gallery (4 across) — sits in the design + research narrative */
+  .cs-wireframes {
+    padding: clamp(60px, 8vw, 100px) var(--gutter);
+    background: var(--paper-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .cs-wireframes__head {
+    max-width: 1200px;
+    margin: 0 auto 32px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .cs-wireframes__num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+  }
+  .cs-wireframes__title {
+    font-size: clamp(28px, 3.6vw, 44px);
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    font-weight: 400;
+    margin: 14px 0 0;
+    max-width: 18ch;
+  }
+  .cs-wireframes__title em {
+    font-style: italic;
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .cs-wireframes__lede {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 56ch;
+  }
+  .cs-wireframes__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 1000px) {
+    .cs-wireframes__head { grid-template-columns: 1fr; gap: 24px; }
+    .cs-wireframes__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Lightbox */
+  .cs-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(14, 14, 14, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(20px, 5vw, 60px);
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .cs-lightbox[hidden] { display: none; }
+  .cs-lightbox.is-open { opacity: 1; }
+  .cs-lightbox__img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
+    display: block;
+  }
+  .cs-lightbox__close,
+  .cs-lightbox__nav {
+    position: absolute;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #f4f1ec;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, transform .2s;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .cs-lightbox__close {
+    top: 24px; right: 24px;
+    width: 44px; height: 44px;
+    font-size: 28px;
+    line-height: 1;
+    display: grid; place-items: center;
+    padding: 0;
+  }
+  .cs-lightbox__nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px; height: 52px;
+    font-size: 28px;
+    line-height: 1;
+    display: grid; place-items: center;
+    padding: 0;
+    font-family: var(--font-sans);
+  }
+  .cs-lightbox__nav--prev { left: 24px; }
+  .cs-lightbox__nav--next { right: 24px; }
+  .cs-lightbox__close:hover,
+  .cs-lightbox__nav:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.35);
+  }
+  .cs-lightbox__nav:hover { transform: translateY(-50%) scale(1.05); }
+  @media (max-width: 600px) {
+    .cs-lightbox__nav { width: 42px; height: 42px; font-size: 22px; }
+    .cs-lightbox__nav--prev { left: 12px; }
+    .cs-lightbox__nav--next { right: 12px; }
+    .cs-lightbox__close { top: 12px; right: 12px; width: 38px; height: 38px; font-size: 24px; }
+  }
 </style>
 </head>
 <body class="cs" data-metric-style="underline">
@@ -386,7 +558,7 @@
   <div class="cs-hero__crumbs"><a href="work.html">Work</a><span>/</span><span>BGRS</span></div>
   <h1 class="cs-hero__title">Relocation,<br/><em>without the chaos.</em></h1>
   <p class="cs-hero__sub">A centralized, task-driven dashboard that transforms a fragmented, email-heavy relocation process into a structured, trackable, and collaborative experience — designed inclusively to WCAG AA in partnership with Fable.</p>
-  <div class="cs-hero__media"><img class="cs-img" src="assets/bgrs/hero.jpg" alt="BGRS ReloAccess — relocation dashboard with departure milestone, tasks, and itinerary" /></div>
+  <div class="cs-hero__media"><img class="cs-img" src="assets/bgrs/hero.png" alt="BGRS ReloAccess — relocation dashboard with departure milestone, tasks, itinerary, and overall progress" /></div>
 </header>
 
 <section class="cs-info">
@@ -422,6 +594,28 @@
   <div class="cs-overview__inner">
     <div class="cs-overview__label">Overview — 01</div>
     <p class="cs-overview__body">Relocation is almost always a tedious and overwhelming process. The BGRS dashboard supports employees, consultants, and clients through every step — coordinating <em>tasks, timelines,</em> and communication across multiple stakeholders. The existing experience was underutilized, hard to navigate, and heavily reliant on email, with users abandoning the platform entirely. The redesign created a centralized, intuitive system that users would actually adopt — shifting relocation management from scattered communication to a structured, self-serve experience.</p>
+  </div>
+</section>
+
+<!-- SCREEN GALLERY (4 × 3) -->
+<section class="cs-gallery cs-gallery--grid12" id="screens">
+  <div class="cs-gallery__head">
+    <h2 class="cs-gallery__title">Screens</h2>
+    <span class="cs-gallery__meta">12 selected</span>
+  </div>
+  <div class="cs-gallery__grid" id="bgrsGrid">
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-1.png" aria-label="Expand screen 01"><img src="assets/bgrs/screen-1.png" alt="BGRS — screen 01" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-2.png" aria-label="Expand screen 02"><img src="assets/bgrs/screen-2.png" alt="BGRS — screen 02" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-3.png" aria-label="Expand screen 03"><img src="assets/bgrs/screen-3.png" alt="BGRS — screen 03" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-4.png" aria-label="Expand screen 04"><img src="assets/bgrs/screen-4.png" alt="BGRS — screen 04" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-5.png" aria-label="Expand screen 05"><img src="assets/bgrs/screen-5.png" alt="BGRS — screen 05" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-6.png" aria-label="Expand screen 06"><img src="assets/bgrs/screen-6.png" alt="BGRS — screen 06" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-7.png" aria-label="Expand screen 07"><img src="assets/bgrs/screen-7.png" alt="BGRS — screen 07" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-8.png" aria-label="Expand screen 08"><img src="assets/bgrs/screen-8.png" alt="BGRS — screen 08" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-9.png" aria-label="Expand screen 09"><img src="assets/bgrs/screen-9.png" alt="BGRS — screen 09" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-10.png" aria-label="Expand screen 10"><img src="assets/bgrs/screen-10.png" alt="BGRS — screen 10" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-11.png" aria-label="Expand screen 11"><img src="assets/bgrs/screen-11.png" alt="BGRS — screen 11" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/screen-12.png" aria-label="Expand screen 12"><img src="assets/bgrs/screen-12.png" alt="BGRS — screen 12" loading="lazy" /></button>
   </div>
 </section>
 
@@ -461,7 +655,7 @@
   </div>
 </section>
 
-<div class="cs-break"><div class="ph"><span class="ph__label">Full-bleed image — flow overview</span></div></div>
+<div class="cs-break"><img class="cs-img" src="assets/bgrs/break-1.png" alt="BGRS — full-bleed flow overview" /></div>
 
 <!-- ACCESSIBILITY · prominent partner section before features -->
 <section class="cs-a11y" id="accessibility">
@@ -633,7 +827,7 @@
 
 </section>
 
-<div class="cs-break cs-break--tall"><div class="ph"><span class="ph__label">Full-bleed image — design system</span></div></div>
+<div class="cs-break cs-break--tall"><img class="cs-img" src="assets/bgrs/break-2.png" alt="BGRS — design system overview" /></div>
 
 <section class="cs-section">
   <header class="cs-section__head">
@@ -670,7 +864,24 @@
   </div>
 </section>
 
-<div class="cs-break"><div class="ph"><span class="ph__label">FigJam research synthesis</span></div></div>
+<!-- WIREFRAMES — early sketches that informed the redesign -->
+<section class="cs-wireframes" id="wireframes">
+  <header class="cs-wireframes__head">
+    <div>
+      <div class="cs-wireframes__num">Wireframes</div>
+      <h2 class="cs-wireframes__title">From sketch to <em>system.</em></h2>
+    </div>
+    <p class="cs-wireframes__lede">Early wireframes for the dashboard redesign — used to align stakeholders on the new task-driven model before high-fidelity design and assistive-technology testing.</p>
+  </header>
+  <div class="cs-wireframes__grid">
+    <button class="cs-shot" type="button" data-src="assets/bgrs/wireframe-1.jpeg" aria-label="Expand wireframe 01"><img src="assets/bgrs/wireframe-1.jpeg" alt="BGRS — wireframe 01" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/wireframe-2.jpeg" aria-label="Expand wireframe 02"><img src="assets/bgrs/wireframe-2.jpeg" alt="BGRS — wireframe 02" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/wireframe-3.jpeg" aria-label="Expand wireframe 03"><img src="assets/bgrs/wireframe-3.jpeg" alt="BGRS — wireframe 03" loading="lazy" /></button>
+    <button class="cs-shot" type="button" data-src="assets/bgrs/wireframe-4.jpeg" aria-label="Expand wireframe 04"><img src="assets/bgrs/wireframe-4.jpeg" alt="BGRS — wireframe 04" loading="lazy" /></button>
+  </div>
+</section>
+
+<div class="cs-break"><img class="cs-img" src="assets/bgrs/break-3.png" alt="BGRS — FigJam research synthesis" /></div>
 
 <section class="cs-section cs-section--alt">
   <header class="cs-section__head">
@@ -720,8 +931,6 @@
     </div>
   </div>
 </section>
-
-<div class="cs-break"><div class="ph"><span class="ph__label">Full-bleed image — 3 wireframes in a notebook</span></div></div>
 
 <!-- PROTOTYPE VIDEO SECTION -->
 <section class="cs-proto" id="prototype">
@@ -788,7 +997,7 @@
   </div>
 </section>
 
-<div class="cs-break"><div class="ph"><span class="ph__label">Full-bleed image break</span></div></div>
+<div class="cs-break"><img class="cs-img" src="assets/bgrs/break-4.png" alt="BGRS — full-bleed break" /></div>
 
 <section class="cs-section cs-section--alt">
   <header class="cs-section__head">
@@ -825,6 +1034,14 @@
   <div class="cs-foot__bottom"><span>© 2026 Trisha Fey</span><span><a href="index.html" style="color:inherit;">↑ Back to top</a></span></div>
 </footer>
 
+<!-- Lightbox shared by the screens grid and wireframes gallery -->
+<div class="cs-lightbox" id="csLightbox" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
+  <button class="cs-lightbox__close" type="button" aria-label="Close">&times;</button>
+  <button class="cs-lightbox__nav cs-lightbox__nav--prev" type="button" aria-label="Previous">‹</button>
+  <img class="cs-lightbox__img" alt="" />
+  <button class="cs-lightbox__nav cs-lightbox__nav--next" type="button" aria-label="Next">›</button>
+</div>
+
 <script>
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
@@ -859,6 +1076,48 @@
     dots.forEach((d) => d.addEventListener('click', () => go(+d.dataset.go)));
     go(0);
   });
+
+  /* ===== Screens + wireframes lightbox ===== */
+  (function lightbox() {
+    const lb = document.getElementById('csLightbox');
+    if (!lb) return;
+    const lbImg = lb.querySelector('.cs-lightbox__img');
+    const closeBtn = lb.querySelector('.cs-lightbox__close');
+    const prevBtn = lb.querySelector('.cs-lightbox__nav--prev');
+    const nextBtn = lb.querySelector('.cs-lightbox__nav--next');
+    const shots = Array.from(document.querySelectorAll('.cs-shot[data-src]'));
+    let idx = 0;
+
+    function show(i) {
+      idx = (i + shots.length) % shots.length;
+      const shot = shots[idx];
+      lbImg.src = shot.dataset.src;
+      const inner = shot.querySelector('img');
+      lbImg.alt = inner ? inner.alt : '';
+    }
+    function open(i) {
+      show(i);
+      lb.hidden = false;
+      requestAnimationFrame(() => lb.classList.add('is-open'));
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lb.classList.remove('is-open');
+      setTimeout(() => { lb.hidden = true; lbImg.src = ''; }, 200);
+      document.body.style.overflow = '';
+    }
+    shots.forEach((shot, i) => shot.addEventListener('click', () => open(i)));
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', () => show(idx - 1));
+    nextBtn.addEventListener('click', () => show(idx + 1));
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(idx - 1);
+      else if (e.key === 'ArrowRight') show(idx + 1);
+    });
+  })();
 </script>
 
 </body>
