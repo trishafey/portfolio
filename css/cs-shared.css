@@ -8,7 +8,7 @@
   --line-2: #f0f0f0;
   --paper: #ffffff;
   --paper-2: #fafafa;
-  --accent: #111111;
+  --accent: #F26B5C;
   --accent-ink: #ffffff;
 
   --font-sans: "Inter Tight", "Söhne", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
@@ -58,12 +58,13 @@ button { font: inherit; cursor: pointer; }
   align-items: center;
   gap: 10px;
 }
-.nav__dot {
-  width: 9px; height: 9px;
-  border-radius: 50%;
-  background: var(--accent);
-  display: inline-block;
+.nav__logo-mark {
+  width: 32px;
+  height: 32px;
+  display: block;
+  transition: opacity .15s;
 }
+.nav__logo:hover .nav__logo-mark { opacity: 0.7; }
 .nav__links {
   display: flex;
   gap: 36px;
