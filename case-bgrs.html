@@ -256,7 +256,7 @@
   }
   .cs-proto__player {
     position: relative;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 8 / 5; /* 1.60 : 1 — matches the source video so nothing is cropped */
     border-radius: 18px;
     overflow: hidden;
     background: #0a0a0a;
@@ -327,13 +327,14 @@
     background: var(--accent);
     transition: width .18s linear;
   }
-  /* Video fills the player frame */
+  /* Video fills the player frame; contain so nothing crops even if the source's
+     ratio drifts a hair from the 8:5 (1.60:1) player */
   .cs-proto__video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     background: #000;
     display: block;
   }
