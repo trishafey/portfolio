@@ -322,9 +322,24 @@
   .cs-proto__chrome-bar::before {
     content: "";
     position: absolute;
-    inset: 0 65% 0 0;
+    top: 0; left: 0; bottom: 0;
+    width: var(--progress, 0%);
     background: var(--accent);
+    transition: width .18s linear;
   }
+  /* Video fills the player frame */
+  .cs-proto__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+    display: block;
+  }
+  /* Hide overlay + chrome once playback has started */
+  .cs-proto__player.is-playing .cs-proto__overlay { opacity: 0; pointer-events: none; }
+  .cs-proto__overlay { transition: opacity .25s ease; }
   .cs-proto__meta {
     margin-top: 28px;
     display: grid;
@@ -954,17 +969,19 @@
       A clickable Figma prototype of the redesigned dashboard — from sign-in through task completion, calendar view, and itinerary export. Recorded as part of stakeholder review and assistive-technology testing rounds.
     </p>
   </header>
-  <div class="cs-proto__player">
-    <div class="ph"><span class="ph__label">Figma prototype recording · 16:9</span></div>
+  <div class="cs-proto__player" id="protoPlayer">
+    <video class="cs-proto__video" id="protoVideo" preload="metadata" playsinline
+           src="assets/bgrs/video-bgrs-dashboard-walkthrough.mov"
+           poster="assets/bgrs/break-2.png"></video>
     <div class="cs-proto__overlay">
       <button class="cs-proto__play" type="button" aria-label="Play prototype walkthrough">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8V4z"/></svg>
       </button>
     </div>
     <div class="cs-proto__chrome">
-      <span>00:00</span>
-      <div class="cs-proto__chrome-bar"></div>
-      <span>02:34</span>
+      <span class="cs-proto__time">00:00</span>
+      <div class="cs-proto__chrome-bar" id="protoBar"></div>
+      <span class="cs-proto__duration">02:34</span>
     </div>
   </div>
   <div class="cs-proto__meta">
@@ -1059,11 +1076,44 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Prototype play button — placeholder behavior
-  document.querySelector('.cs-proto__play')?.addEventListener('click', (e) => {
-    e.currentTarget.style.opacity = '0.4';
-    e.currentTarget.setAttribute('disabled', 'true');
-  });
+  // Prototype walkthrough video
+  (function protoVideo() {
+    const player = document.getElementById('protoPlayer');
+    const video = document.getElementById('protoVideo');
+    const playBtn = document.querySelector('.cs-proto__play');
+    const bar = document.getElementById('protoBar');
+    const timeEl = document.querySelector('.cs-proto__time');
+    const durEl = document.querySelector('.cs-proto__duration');
+    if (!player || !video || !playBtn || !bar) return;
+
+    const fmt = (s) => {
+      if (!isFinite(s)) return '00:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+    };
+
+    playBtn.addEventListener('click', () => {
+      player.classList.add('is-playing');
+      video.controls = true;
+      video.play();
+    });
+    video.addEventListener('pause', () => {
+      if (video.currentTime === 0) player.classList.remove('is-playing');
+    });
+    video.addEventListener('ended', () => {
+      player.classList.remove('is-playing');
+      video.controls = false;
+    });
+    video.addEventListener('timeupdate', () => {
+      const pct = (video.currentTime / (video.duration || 1)) * 100;
+      bar.style.setProperty('--progress', `${pct}%`);
+      if (timeEl) timeEl.textContent = fmt(video.currentTime);
+    });
+    video.addEventListener('loadedmetadata', () => {
+      if (durEl) durEl.textContent = fmt(video.duration);
+    });
+  })();
 
   // Before / after toggle — F·01 navigation, F·02 home dashboard
   document.querySelectorAll('.ba-car').forEach((car) => {
